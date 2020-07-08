@@ -1,3 +1,6 @@
+import Place from './Place.js';
+import {timeout} from './utils.js';
+
 export default class Roller {
 
     /**
@@ -35,6 +38,51 @@ export default class Roller {
         this.positionPlace(this.places.length - 1);
     }
 
+    pop() {
+        if (this.places.length) {
+            const index = this.places.findIndex(place => place.number === this.places.length);
+            this.places[index].el.remove();
+            this.places.splice(index, 1)
+            this.positionPlace();
+        }
+    }
+
+    /**
+     *
+     * @param {number} count
+     */
+    setCount(count) {
+        const l = this.places.length
+        const speed = 1000 / Math.abs(l - count);
+        if (count < l) {
+            return Promise.all(Array(l - count).fill(null).map((_, i) => {
+                return timeout(() => {
+                    this.pop()
+                }, i * speed, this);
+            })).then(() => count);
+        } else if (count > l) {
+            return Promise.all(Array(count - l).fill(null).map((_, i) => {
+                return timeout(() => {
+                    this.append(new Place(this.places.length + 1));
+                }, i * speed, this);
+            })).then(() => count);
+        }
+        return Promise.resolve();
+    }
+
+    /**
+     *
+     * @param {number} count
+     */
+    generate(count) {
+        for (let i = 0; i < count; i++) {
+            setTimeout(() => {
+                const place = new Place(i + 1);
+                roller.append(place);
+            }, i * 200);
+        }
+    }
+
     positionPlace() {
         let angle;
         this.places.forEach((place, index) => {
@@ -65,6 +113,8 @@ export default class Roller {
         p2.el.style.left = p1.el.style.left;
         p1.el.style.top = tmpTop;
         p1.el.style.left = tmpLeft;
+        this.places[i1] = p2;
+        this.places[i2] = p1;
         p1.el.classList.add('swapped');
         p2.el.classList.add('swapped');
         setTimeout(() => {

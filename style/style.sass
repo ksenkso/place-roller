@@ -1,0 +1,31 @@
+.wrapper
+  margin: 10px auto
+
+.places
+  position: relative
+  margin: 10px auto
+  border: 1px solid
+  .place
+    position: absolute
+    transition: background-color 0.1s ease-in-out, top 0.1s linear, left 0.1s linear
+    border-radius: 50%
+    width: 20px
+    height: 20px
+    text-align: center
+    border: 1px solid
+    &.swapped
+      background-color: #d6a039
+      transition: background-color 0.1s ease-in-out, top 0.3s linear, left 0.3s linear
+.controls
+  padding: 12px
+  border: 1px solid
+  max-width: 500px
+  margin: 0 auto
+  display: flex
+  flex-direction: column
+  button, input
+    margin-bottom: 10px
+    padding: 4px
+  button
+    cursor: pointer
+

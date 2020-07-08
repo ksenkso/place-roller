@@ -13,3 +13,10 @@ export function h({tag = 'div', attributes, children}) {
     return el;
 }
 
+export const timeout = (func, time, thisArg = null) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(func.call(thisArg));
+        }, time);
+    })
+}

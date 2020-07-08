@@ -1,38 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Place roller</title>
+    <link rel="stylesheet" href="style/style.css">
 </head>
-<style>
-    .places {
-        position: relative;
-        margin: 10px auto;
-        border: 1px solid;
-
-    }
-
-    .place {
-        position: absolute;
-        transition: background-color 0.1s ease-in-out, top 0.1s linear, left 0.1s linear;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        text-align: center;
-        border: 1px solid;
-    }
-
-    .place.swapped {
-        background-color: #d6a039;
-        transition: background-color 0.1s ease-in-out, top 0.3s linear, left 0.3s linear;
-    }
-</style>
 <body>
-<div class="places">
-
+<div class="wrapper">
+    <div class="places"></div>
+    <div class="controls">
+        <label for="place_count">Place count</label>
+        <input type="number" name="place_count" id="place_count" value="10">
+        <button type="button" id="roll">ROLL</button>
+        <button type="button" id="roll-one">ROLL ONE</button>
+        <button type="button" id="reset">RESET</button>
+<!--        <button type="button" id="pop">POP LAST</button>-->
+    </div>
 </div>
-<button type="button" id="roll">ROLL</button>
-<button type="button" id="roll-one">ROLL ONE</button>
+
+
 <script src="js/app.js" type="module"></script>
 </body>
 </html>

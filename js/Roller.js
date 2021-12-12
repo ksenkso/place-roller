@@ -101,7 +101,7 @@ export default class Roller {
     swap(i1, i2) {
         if (this.lastSwap) {
             if (this.lastSwap[0] === i1 && this.lastSwap[1] === i2 || this.lastSwap[0] === i2 && this.lastSwap[1] === i1) {
-                alert('нихуя ты фартовый брателло, ладно, свапаю обратно');
+                alert('O-oh, swapping back :-)');
             }
         }
         this.lastSwap = [i1, i2];
